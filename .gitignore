@@ -1,0 +1,5 @@
+# folder
+.vscode/
+# file
+*.out
+.DS_Store
