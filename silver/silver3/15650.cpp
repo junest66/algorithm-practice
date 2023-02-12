@@ -17,7 +17,7 @@ void func(int k, int pre) {
         if(!vis[i] && pre < i) {
             arr[k] = i;
             vis[i] = true;
-            func(k+1, arr[k]);5
+            func(k+1, arr[k]);
             vis[i] = false;
         }
     }
