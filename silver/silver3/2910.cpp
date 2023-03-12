@@ -6,19 +6,18 @@
 #include <utility>
 using namespace std;
 
-bool cmp(pair<long long,int> a, pair<long long, int> b) {
+bool cmp(const pair<int,int> &a, const pair<int, int> &b) {
     return a.second > b.second;
 }
 
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
-    int n;
-    long long m;
+    int n, m;
     cin >> n >> m;
-    vector<pair<long long, int>> vec;
+    vector<pair<int, int>> vec;
     for(int i=0; i<n; i++) {
-        long long a;
+        int a;
         cin >> a;
         bool search = false;
         if(!vec.empty()) {
@@ -39,7 +38,5 @@ int main() {
             cout << vec[i].first << '\n';
         }
     }
-
-
 
 }
