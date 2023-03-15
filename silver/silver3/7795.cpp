@@ -24,16 +24,19 @@ int main() {
             vb.push_back(y);
         }
         sort(va.begin(),va.end());
-        sort(vb.begin(),vb.end());
-        for(int i=0; i < a; i++) {
-            for(int j=0; j < b; j++) {
-                if(va[i] > vb[j]) {
-                    count++;
-                }
-                else {
-                    break;
-                }
-            }
+        // sort(vb.begin(),vb.end());  
+        // for(int i=0; i < a; i++) {
+        //     for(int j=0; j < b; j++) {
+        //         if(va[i] > vb[j]) {
+        //             count++;
+        //         }
+        //         else {
+        //             break;
+        //         }
+        //     }
+        // }
+        for(int i=0; i<b; i++) {  //이분탐색
+            count += va.end() - upper_bound(va.begin(),va.end(), vb[i]);
         }
         cout << count << '\n';
     }
