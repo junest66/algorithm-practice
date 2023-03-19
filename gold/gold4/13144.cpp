@@ -24,6 +24,6 @@ int main() {
 		res+=(end-start);
 		vis[v[start]]=false;
 	}
-	cout << res << endl;
+	cout << res;
 	return 0;
 }
