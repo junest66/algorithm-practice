@@ -1,30 +1,38 @@
+// baekjoon 1780번 종이의 개수
+
 #include <iostream>
 using namespace std;
+int n;
+int arr[2188][2188];
+int ans[3];
 
-int arr[2200][2200];
-int ans[3];  //-1, 0 , 1 갯수 
-bool check(int x, int y, int n) { //다 같은 숫자로 된 종이 인지 확인 하는 함수
-    for(int i=x; i<x+n; i++) {
-        for(int j=y; j<y+n; j++) {
-            if(arr[x][y] != arr[i][j]) return false;
-        }
-    }
-    return true;
-}
-
-void func(int x, int y, int n) {
-    if(check(x,y,n)) {
-        ans[arr[x][y] + 1]++;
+void func(int y, int x, int n) {
+    int value = arr[y][x];
+    if(n==1) {  //base case: n=1 일때 
+        ans[value+1]++;
         return;
     }
-    int z = n / 3;
-    for(int i=0; i< 3; i++)
-        for(int j=0; j<3; j++)
-            func(x+i*z,y+j*z, z);
+    for(int i = y; i<y+n; i++) {
+        for(int j= x; j<x+n; j++) {
+            if(value != arr[i][j]) {
+                int nextn= n/3;
+                for(int i=0; i<3; i++) {   //9개로 쪼겜
+                    for(int j=0; j<3; j++) {
+                        func(y+i*nextn,x+j*nextn,nextn);
+                    }
+                }
+                return;
+            }
+        }
+    }
+    ans[value+1]++;
+    return;
 }
 
 int main() {
-    int n;
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    
     cin >> n;
     for(int i=0; i<n; i++) {
         for(int j=0; j<n; j++) {
@@ -32,8 +40,6 @@ int main() {
         }
     }
     func(0,0,n);
-    for(int i=0; i<3; i++) {
-        cout << ans[i]<< '\n';
-    }
-
+    for(auto e:ans) cout << e << '\n';
+    return 0;
 }
