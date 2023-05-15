@@ -30,7 +30,6 @@ int main(void) {
         adj[b].push_back({cost, a});
     }
 
-    int cnt = 0; // 현재 선택된 간선의 수
     int ans = 0;
     // tuple<int,int,int> : {비용, 정점 1, 정점 2}
     priority_queue< tuple<int,int,int>,
@@ -38,7 +37,6 @@ int main(void) {
                     greater<tuple<int,int,int>> > pq;
     for(int i=0; i<k; i++) {
       chk[power[i]]=1;
-      cnt++;
       for(auto nxt: adj[power[i]]){
         pq.push({nxt.X, power[i], nxt.Y});
       }
