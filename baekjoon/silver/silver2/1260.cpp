@@ -20,9 +20,9 @@ void dfs() {
         cout << current << " ";
         visited[current] = 1;
         sort(vec[current].rbegin(), vec[current].rend());
-        for(int i = 0; i< vec[current].size(); i++) {
-            if(visited[vec[current][i]]) continue;
-            stk.push(vec[current][i]);
+        for(auto nxt : vec[current]) {
+            if(visited[nxt]) continue;
+            stk.push(nxt);
         }
     }
     cout << '\n';
