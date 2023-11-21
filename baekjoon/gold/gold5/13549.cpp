@@ -1,41 +1,45 @@
 #include <iostream>
+#include <queue>
 #include <utility>
-#include <deque>
+#include <set>
+#include <cstring>
 using namespace std;
-int arr[200002];
-int n,m;
-deque<pair<int,int>> deck;
+
+int n,k;
+int arr[100001];
+int dx[3] = {1, -1 , 2};
+set<int> st;
+queue<pair<int,int>> que;
 
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
-    cin >> n >> m;
-    arr[n] = 1;
-    deck.push_back({n,0});
-    while(!deck.empty()) {
-        auto cur = deck.front();
-        deck.pop_front();
-        if(cur.first == m) {
-            cout << cur.second;
-            return 0;
+    cin >> n >> k;
+    memset(arr, -1 , sizeof(arr));
+    que.push({0, n});
+    while(!que.empty()) {
+        auto current = que.front();
+        que.pop();
+        int currentTime = current.first;
+        int currentPos = current.second;
+        if(arr[currentPos] != -1 && currentTime >= arr[currentPos]) continue;
+        if(currentPos == k) {
+            st.insert(currentTime);
         }
-        int nx = cur.first + 1;
-        int ny = cur.first - 1;
-        int nz = cur.first * 2;
-        if(arr[nz] == 0 && 0 <= nz && nz <=100000) {
-            arr[nz] = 1;
-            deck.push_front({nz,cur.second});
+        arr[currentPos] = currentTime;
+        for(int i = 0; i < 3; i++) {
+            int nextPos;
+            if(i == 2) {
+                nextPos = currentPos * dx[i];
+                if(nextPos < 0 || nextPos > 100000) continue;
+                que.push({currentTime, nextPos});
+            } else {
+                nextPos = currentPos + dx[i];
+                if(nextPos < 0 || nextPos > 100000) continue;
+                que.push({currentTime+1, nextPos});
+            }
         }
-        if(arr[nx] == 0 && 0 <= nx && nx <=100000) {
-            arr[nx] = 1;
-            deck.push_back({nx,cur.second+1});
-        }
-        if(arr[ny] == 0 && 0 <= ny && ny <=100000) {
-            arr[ny] = 1;
-            deck.push_back({ny,cur.second+1});
-        }
-
     }
-
-
+    cout << *(st.begin());
+    return 0;
 }
