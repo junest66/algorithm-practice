@@ -36,17 +36,23 @@ public class Problem19237 {
         public void move() {
             List<Integer> clean = new ArrayList<>();
             List<Integer> selfDir = new ArrayList<>();
-            for(int i = 1; i <= 4; i++) {
-               int nx = x + dx[i];
-               int ny = y + dy[i];
-               if(nx < 1 || ny < 1 || nx > n || ny > n) continue;
-               if(smell[ny][nx] == 0) clean.add(i);
-               if(board[ny][nx] == number) selfDir.add(i);
+            for (int i = 1; i <= 4; i++) {
+                int nx = x + dx[i];
+                int ny = y + dy[i];
+                if (nx < 1 || ny < 1 || nx > n || ny > n) {
+                    continue;
+                }
+                if (smell[ny][nx] == 0) {
+                    clean.add(i);
+                }
+                if (board[ny][nx] == number) {
+                    selfDir.add(i);
+                }
             }
             int nextDir;
-            if(clean.size() == 1) {
+            if (clean.size() == 1) {
                 nextDir = clean.get(0);
-            } else if(clean.size() == 0) {
+            } else if (clean.size() == 0) {
                 nextDir = priorityDirValue(selfDir, number, dir);
             } else {
                 nextDir = priorityDirValue(clean, number, dir);
@@ -58,8 +64,8 @@ public class Problem19237 {
     }
 
     static public int priorityDirValue(List<Integer> list, int fishNumber, int dir) {
-        for(int i = 1; i <= 4; i++) {
-            if(list.contains(priorityDir[fishNumber][dir][i])) {
+        for (int i = 1; i <= 4; i++) {
+            if (list.contains(priorityDir[fishNumber][dir][i])) {
                 return priorityDir[fishNumber][dir][i];
             }
         }
@@ -75,14 +81,14 @@ public class Problem19237 {
         k = Integer.parseInt(st.nextToken());
         currentShark = m;
         priorityDir = new int[m + 1][5][5];
-        board = new int[n+1][n+1];
-        smell = new int[n+1][n+1];
+        board = new int[n + 1][n + 1];
+        smell = new int[n + 1][n + 1];
 
         for (int i = 1; i <= n; i++) {
             st = new StringTokenizer(br.readLine());
             for (int j = 1; j <= n; j++) {
                 int a = Integer.parseInt(st.nextToken());
-                if(a != 0) {
+                if (a != 0) {
                     list.add(new Shark(a, j, i));
                     smell[i][j] = k;
                 }
@@ -103,13 +109,13 @@ public class Problem19237 {
             }
         }
 
-        while(list.size() != 1) {
+        while (list.size() != 1) {
             time++;
-            if(time > 1000) {
+            if (time > 1000) {
                 time = -1;
                 break;
             }
-            for(int i = 0; i < list.size(); i++) {
+            for (int i = 0; i < list.size(); i++) {
                 Shark shark = list.get(i);
                 shark.move();
             }
@@ -141,11 +147,11 @@ public class Problem19237 {
     }
 
     private static void decreaseSmell() {
-        for(int i = 1; i <= n; i++) {
-            for(int j = 1; j <= n; j++) {
-                if(smell[i][j] != 0) {
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= n; j++) {
+                if (smell[i][j] != 0) {
                     smell[i][j]--;
-                    if(smell[i][j] == 0) {
+                    if (smell[i][j] == 0) {
                         board[i][j] = 0;
                     }
                 }
@@ -154,3 +160,4 @@ public class Problem19237 {
     }
 
 }
+        

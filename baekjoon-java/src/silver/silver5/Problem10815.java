@@ -40,4 +40,20 @@ public class Problem10815 {
             }
         }
     }
+
+    public int solution(int[] A) {
+        // Implement your solution here
+        // dp[i] = A[i] + (MAX(dp[i-1,i-2, i-3, i-4, i-5, i-6]))
+        int[] dp = new int[A.length];
+        dp[0] = A[0];
+        for(int i = 1; i < A.length; i++) {
+            if(i <= 6) {
+                dp[i] = Math.max(dp[i-1] + A[i], A[i]);
+            } else {
+                int[] copy = Arrays.copyOfRange(dp, i-6, i);
+                Arrays.stream(copy).max().orElse(0);
+            }
+        }
+        return 0;
+    }
 }
