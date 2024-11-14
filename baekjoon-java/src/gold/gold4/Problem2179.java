@@ -22,7 +22,10 @@ public class Problem2179 {
         for (int i = 0; i < n; i++) {
             name.add(br.readLine());
         }
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < n - 1; i++) {
+            if (name.get(i).length() <= maxValue) {
+                continue;
+            }
             for (int j = i + 1; j < n; j++) {
                 func(i, j);
             }
@@ -34,7 +37,7 @@ public class Problem2179 {
     private static void func(int i, int j) {
         String s1 = name.get(i);
         String s2 = name.get(j);
-        if ((s1.charAt(0) != s2.charAt(0)) || s1.equals(s2)) {
+        if ((s1.charAt(0) != s2.charAt(0)) || s1.equals(s2) || s2.length() <= maxValue) {
             return;
         }
         int count = getMatchLength(name.get(i), name.get(j));
