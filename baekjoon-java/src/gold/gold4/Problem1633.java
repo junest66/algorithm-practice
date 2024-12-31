@@ -45,14 +45,4 @@ public class Problem1633 {
         // 결과 출력
         System.out.println(dp[n][15][15]);
     }
-
-    private static void func(int index, int white, int black) {
-        if (index == n) {
-            return;
-        }
-        if (white == 15 && black == 15) {
-            return;
-        }
-
-    }
 }
