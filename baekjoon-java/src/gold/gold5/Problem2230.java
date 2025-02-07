@@ -15,27 +15,35 @@ public class Problem2230 {
     public static void main(String[] args) throws IOException {
         System.setIn(new FileInputStream("src/input.txt"));
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine());
-        n = Integer.parseInt(st.nextToken());
-        k = Integer.parseInt(st.nextToken());
+        StringTokenizer stToken = new StringTokenizer(br.readLine());
+        n = Integer.parseInt(stToken.nextToken());
+        k = Integer.parseInt(stToken.nextToken());
         arr = new int[n];
         for (int i = 0; i < n; i++) {
             arr[i] = Integer.parseInt(br.readLine());
         }
         Arrays.sort(arr);
         int answer = Integer.MAX_VALUE;
-        for (int i = 0; i < n; i++) {
-            int target = k + arr[i];
-            if (target > arr[n - 1]) {
+        int en = 0;
+        for (int st = 0; st < n; st++) {
+            while (en < n && arr[en] - arr[st] < k) {
+                en++;
+            }
+            if (en == n) {
                 break;
             }
-            int index = lowerBound(i);
-            if (index != arr.length) {
-                answer = Math.min(answer, arr[index] - arr[i]);
-            }
-            if (answer == k) {
-                break;
-            }
+            answer = Math.min(answer, arr[en] - arr[st]);
+//            int target = k + arr[i];
+//            if (target > arr[n - 1]) {
+//                break;
+//            }
+//            int index = lowerBound(i);
+//            if (index != arr.length) {
+//                answer = Math.min(answer, arr[index] - arr[i]);
+//            }
+//            if (answer == k) {
+//                break;
+//            }
         }
         System.out.println(answer);
     }
