@@ -8,7 +8,7 @@ class Solution {
         int answer = 0;
         for(int i = 0; i < s.length(); i++) {
             if(i != 0) {
-                list.add(0, list.remove(list.size() - 1));
+                list.add(list.remove(0));
             }
             if(func(list)) {
                 answer++;
