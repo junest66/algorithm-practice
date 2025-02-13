@@ -1,50 +1,32 @@
 import java.util.*;
-import java.util.stream.*;
 
 class Solution {
     public int solution(String s) {
-        List<Character> list = s.chars().mapToObj(c -> (char) c).collect(Collectors.toList());
-
         int answer = 0;
-        for(int i = 0; i < s.length(); i++) {
-            if(i != 0) {
-                list.add(list.remove(0));
-            }
-            if(func(list)) {
+        int n = s.length();
+
+        for (int i = 0; i < n; i++) {
+            String rotated = s.substring(i) + s.substring(0, i);
+            if (isValidRotation(rotated)) {
                 answer++;
             }
         }
         return answer;
     }
 
-    public boolean func(List<Character> list) {
-        Deque<Character> stk = new ArrayDeque<>();
-        for(Character c : list) {
-            if(isOpenCharacter(c)) {
-                stk.push(c);
-            } else {
-                if(stk.isEmpty() || !isIssue(stk.pop(), c)) {
+    private boolean isValidRotation(String s) {
+        Deque<Character> stack = new ArrayDeque<>();
+        Map<Character, Character> pairs = Map.of(')', '(', ']', '[', '}', '{');
+
+        for (char c : s.toCharArray()) {
+            if (pairs.containsValue(c)) {
+                stack.push(c);
+            } else if (pairs.containsKey(c)) {
+                if (stack.isEmpty() || stack.pop() != pairs.get(c)) {
                     return false;
                 }
             }
         }
-        return stk.isEmpty();
-    }
-
-    public boolean isOpenCharacter(Character c) {
-        return c == '[' || c =='(' || c =='{';
-    }
-
-    public boolean isIssue(Character c1, Character c2) {
-        if(c2 == ']' && c1 != '[') {
-            return false;
-        }
-        if(c2 == '}' && c1 != '{') {
-            return false;
-        }
-        if(c2 == ')' && c1 != '(') {
-            return false;
-        }
-        return true;
+        return stack.isEmpty();
     }
 }
