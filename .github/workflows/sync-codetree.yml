@@ -1,0 +1,34 @@
+name: Sync Codetree Subtree
+
+on:
+  schedule:
+    - cron: '0 15 * * *'  # 매일 KST 자정 (UTC 15시)
+  workflow_dispatch:      # 수동 실행 버튼도 추가됨
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout algorithm repo
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set Git config
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Add codetree remote
+        run: |
+          git remote add codetree https://github.com/junest66/codetree-solutions.git
+          git fetch codetree
+
+      - name: Pull codetree subtree
+        run: |
+          git subtree pull --prefix=codetree codetree main -m "chore(subtree): sync codetree with latest changes"
+
+      - name: Push updated subtree
+        run: |
+          git push origin main
