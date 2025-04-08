@@ -11,8 +11,8 @@ public class Main {
         // Please write your code here.
         int answer = 0;
         for(int i = 0; i < n; i++) { //행
-            int cnt = 0;
             for(int j = 0; j < n - 2; j++) {
+                int cnt = 0;
                 if(grid[i][j] == 1) {
                    cnt++; 
                 }
@@ -22,8 +22,8 @@ public class Main {
                 if(grid[i][j+2] == 1) {
                     cnt++;
                 }
+                answer = Math.max(cnt, answer);
             }
-            answer = Math.max(cnt, answer);
         }
         System.out.println(answer);
     }
