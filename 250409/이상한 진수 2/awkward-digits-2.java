@@ -3,7 +3,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         String a = sc.next();
-        int answer = Integer.MIN_VALUE;
+        int answer = -1;
         for(int i = 1; i < a.length(); i++) {
             StringBuilder sb = new StringBuilder(a);
             sb.setCharAt(i, func(a.charAt(i)));
