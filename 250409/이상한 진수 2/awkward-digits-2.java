@@ -4,7 +4,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         String a = sc.next();
         int answer = -1;
-        for(int i = 1; i < a.length(); i++) {
+        for(int i = 0; i < a.length(); i++) {
             StringBuilder sb = new StringBuilder(a);
             sb.setCharAt(i, func(a.charAt(i)));
             answer = Math.max(Integer.parseInt(sb.toString(), 2), answer);
