@@ -26,7 +26,9 @@ public class Main {
             }
         }
 
-        System.out.println(arr[answer[0] - 1][answer[1] - 1]);
+        System.out.println(arr[answer[0]][answer[1]]);
+        answer[0]++;
+        answer[1]++;
         System.out.println(answer[0] + " " + answer[1]);
     }
 
@@ -34,14 +36,14 @@ public class Main {
         int a = arr[i][j];
         if(i - 1 >= 0 && i - 2 >= 0 && i + 1 < 19 && i + 2 < 19) {
             if(arr[i-1][j] == a && arr[i-2][j] == a && arr[i+1][j] == a & arr[i+2][j] == a) {
-                answer = new int[]{i+1, j+1};
+                answer = new int[]{i, j};
                 return true;
             }
         }
 
         if(j - 1 >= 0 && j - 2 >= 0 && j + 1 < 19 && j + 2 < 19) {
             if(arr[i][j - 1] == a && arr[i][j - 2] == a && arr[i][j+ 1] == a & arr[i][j + 2] == a) {
-                answer = new int[]{i+1, j+1};
+                answer = new int[]{i, j};
                 return true;
             }
         }
@@ -49,7 +51,7 @@ public class Main {
         if(i - 1 >= 0 && j - 1 >= 0 && i - 2 >= 0 && j - 2 >= 0 
         && i + 1 < 19 && j + 1 < 19 && i + 2 < 19 && j + 2 < 19) {
             if(arr[i-1][j -1] == a && arr[i-2][j-2] == a && arr[i+1][j+1] == a & arr[i+2][j+1] == a) {
-                answer = new int[]{i+1, j+1};
+                answer = new int[]{i, j};
                 return true;
             }
         }
