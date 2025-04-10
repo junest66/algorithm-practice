@@ -23,8 +23,8 @@ public class Main {
     private static void func(int a, int b) {
         int total = arr[a][b] + arr[a][b+1] + arr[a][b+2];
 
-        for(int i = 0; i < n; i++) {
-            for(int j = 0; j < n - 2; j++) { //1개 젤 왼쪽 지점
+        for(int i = a; i < n; i++) {
+            for(int j = b; j < n - 2; j++) { //1개 젤 왼쪽 지점
                 if(i == a) {
                     if(j == b || j == b+1 || j == b+2) {
                         continue;
