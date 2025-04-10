@@ -14,22 +14,15 @@ public class Main {
         }
         // Please write your code here.
         for(int i = 0; i < 19; i++) {
-            boolean ans = false;
             for(int j = 0; j < 19; j++) {
                 if(arr[i][j] != 0 && func(i, j)) {
-                    ans = true;
-                    break;
+                    System.out.println(arr[answer[0]][answer[1]]);
+                    System.out.println((answer[0] + 1) + " " + (answer[1] + 1));
+                    return; // 바로 종료
                 }
             }
-            if(ans) {
-                break;
-            }
         }
-
-        System.out.println(arr[answer[0]][answer[1]]);
-        answer[0]++;
-        answer[1]++;
-        System.out.println(answer[0] + " " + answer[1]);
+        System.out.println(0);
     }
 
     private static boolean func(int i, int j) {
