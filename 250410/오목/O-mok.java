@@ -48,6 +48,14 @@ public class Main {
                 return true;
             }
         }
+
+        if(i - 1 >= 0 && j + 1 < 19 && i - 2 >= 0 && j - 2 < 19 
+        && i + 1 < 19 && j - 1 >= 0 && i + 2 < 19 && j -2 >= 0) {
+            if(arr[i-1][j + 1] == a && arr[i-2][j+2] == a && arr[i+1][j-1] == a & arr[i+2][j-2] == a) {
+                answer = new int[]{i, j};
+                return true;
+            }
+        }
         return false;
 
         
