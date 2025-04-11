@@ -16,11 +16,10 @@ public class Main {
         int answer = 0;
 
         for(int i = 0; i < 101; i++) {
-            if(i - k < 0 || i + k >= 101) {
-                continue;
-            }
             int sum = 0;
-            for(int j = i-k; j <= i +k; j++) {
+            int start = i - k < 0 ? 0 : i-k;
+            int end = i + k >= 101 ? 100 : i+k;
+            for(int j = start; j <= end; j++) {
                 sum += board[j];
             }
             answer = Math.max(answer, sum);
