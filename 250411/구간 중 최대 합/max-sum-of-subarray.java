@@ -10,7 +10,7 @@ public class Main {
         // Please write your code here.
         int answer = 0;
 
-        for(int i = 0; i < n-k; i++) {
+        for(int i = 0; i <= n-k; i++) {
             // System.out.println("i : " + i);
             int sum = 0;
             for(int j = i; j < i + k; j++) {
