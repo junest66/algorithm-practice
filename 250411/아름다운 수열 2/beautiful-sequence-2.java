@@ -18,7 +18,13 @@ public class Main {
         int answer = 0;
 
         for(int i = 0; i < N - M + 1; i++) {
-            if(setB.contains(A[i]) && setB.contains(A[i+1]) && setB.contains(A[i+2])) {
+            int count = 0;
+            for(int j = i; j < i + M; j++) {
+                if(setB.contains(A[j])) {
+                    count++;
+                }
+            }
+            if(count == M) {
                 answer++;
             }
         }
