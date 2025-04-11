@@ -5,7 +5,6 @@ public class Main {
         int n = sc.nextInt();
         int k = sc.nextInt();
         int[] arr = new int[10001];
-        int maxValue = 0;
 
         for (int i = 0; i < n; i++) {
             int pos = sc.nextInt();
@@ -15,15 +14,14 @@ public class Main {
             } else if(c == 'H') {
                 arr[pos] = 2;
             }
-            maxValue = Math.max(maxValue, pos);
         }
 
         int answer = 0;
 
-        for(int i = 1; i <= maxValue - k; i++) {
+        for(int i = 1; i + k < 10001; i++) {
             // System.out.println(i);
             int sum = 0;
-            for(int j = i; j < i + k + 1; j++) {
+            for(int j = i; j <= i + k; j++) {
                 // System.out.println(j);
                 sum += arr[j];
             }
