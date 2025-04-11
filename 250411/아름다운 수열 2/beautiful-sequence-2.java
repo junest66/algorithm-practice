@@ -18,13 +18,13 @@ public class Main {
         int answer = 0;
 
         for(int i = 0; i < N - M + 1; i++) {
-            int count = 0;
+            Set<Integer> temp = new HashSet<>(setB);
             for(int j = i; j < i + M; j++) {
-                if(setB.contains(A[j])) {
-                    count++;
+                if(temp.contains(A[j])) {
+                    temp.remove(A[j]);
                 }
             }
-            if(count == M) {
+            if(temp.isEmpty()) {
                 answer++;
             }
         }
