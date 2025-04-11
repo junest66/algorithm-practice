@@ -36,7 +36,6 @@ public class Main {
                 answer++;
             }
         }
-        System.out.println(map);
         System.out.println(answer);
         // Please write your code here.
     }
