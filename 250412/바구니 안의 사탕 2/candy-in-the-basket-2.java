@@ -15,7 +15,10 @@ public class Main {
         // Please write your code here.
         int answer = 0;
 
-        for(int i = k; i + k < 101; i++) {
+        for(int i = 0; i < 101; i++) {
+            if(i - k < 0 || i + k >= 101) {
+                continue;
+            }
             int sum = 0;
             for(int j = i-k; j <= i +k; j++) {
                 sum += board[j];
