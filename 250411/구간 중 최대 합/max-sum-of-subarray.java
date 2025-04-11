@@ -10,8 +10,14 @@ public class Main {
         // Please write your code here.
         int answer = 0;
 
-        for(int i = 0; i < n-2; i++) {
-            answer = Math.max(answer, arr[i] + arr[i+1] + arr[i+2]);
+        for(int i = 0; i < n-k; i++) {
+            // System.out.println("i : " + i);
+            int sum = 0;
+            for(int j = i; j < i + k; j++) {
+                // System.out.println("j : " + j);
+                sum += arr[j];
+            }
+            answer = Math.max(answer, sum);
         }
 
         System.out.println(answer);
