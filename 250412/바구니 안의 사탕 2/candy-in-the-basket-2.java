@@ -10,7 +10,7 @@ public class Main {
         for (int i = 0; i < n; i++) {
             candies[i] = sc.nextInt();
             positions[i] = sc.nextInt();
-            board[positions[i]] = candies[i];
+            board[positions[i]] += candies[i];
         }
         // Please write your code here.
         int answer = 0;
