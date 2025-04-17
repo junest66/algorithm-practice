@@ -2,8 +2,8 @@ name: Sync Codetree Subtree
 
 on:
   schedule:
-    - cron: '0 16 * * *'  # 매일 KST 1시 (UTC 16시)
-  workflow_dispatch:      # 수동 실행 버튼도 추가됨
+    - cron: '0 16 * * *'  # 매일 KST 1시
+  workflow_dispatch:
 
 jobs:
   sync:
@@ -13,7 +13,7 @@ jobs:
       - name: Checkout algorithm repo
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0  # subtree 병합에 필요한 커밋 이력 확보
 
       - name: Set Git config
         run: |
@@ -27,7 +27,7 @@ jobs:
 
       - name: Pull codetree subtree
         run: |
-          git subtree pull --prefix=codetree codetree main --squash -m "chore(subtree): sync codetree"
+          git subtree pull --prefix=codetree codetree main -m "chore(subtree): sync codetree"
 
       - name: Push updated subtree
         run: |
