@@ -138,48 +138,8 @@ public class Main {
                     }
                 }
             }
-            // List<int[]> pos = x.getValue();
-            // Collections.sort(pos, (a, b) -> {
-            //     if(b[1] == a[1]) {
-            //         return a[0] - b[0];
-            //     }
-            //     return a[1] - b[1];
-            // });
-
-            // for(int j = 0; j < N; j++) {
-            //     boolean pass = false;
-            //     for(int i = 0; i < N; i++) {
-            //         List<int[]> transList = transForm(pos, i, j);
-            //         if(validRange(transList, newBoard)) {
-            //             for(int[] arr : transList) {
-            //                 newBoard[arr[0]][arr[1]] = x.getKey();
-            //             }
-            //             pass = true;
-            //             break;
-            //         }
-            //     }
-
-            //     if(pass) {
-            //         break;
-            //     }
-            }
+        }
         board = newBoard;
-    }
-
-    private static List<int[]> transForm(List<int[]> list, int i, int j) {
-        int[] start = list.get(0);
-        int y = i - start[0]; // 0 - 3  // -3
-        int x = j - start[1]; // 0 - 0 // 0
-
-        return list.stream()
-                .map(a -> new int[]{a[0] + y, a[1] + x})
-                .collect(Collectors.toList());
-    }
-
-    private static boolean validRange(List<int[]> list, int[][] board) {
-        return list.stream().noneMatch(x ->
-            x[0] < 0 || x[1] < 0 || x[0] >= N || x[1] >= N || board[x[0]][x[1]] != 0
-        );
     }
 
     private static int calc() {
