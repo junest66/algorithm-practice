@@ -4,38 +4,37 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.StringTokenizer;
 
 public class Problem2294 {
     static int n;
     static int k;
-    static List<Integer> coins = new ArrayList<>();
-    static int[] arr;
 
     public static void main(String[] args) throws IOException {
-        System.setIn(new FileInputStream("src/input.txt"));
+        System.setIn(new FileInputStream("baekjoon-java/src/input.txt"));
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
         n = Integer.parseInt(st.nextToken());
         k = Integer.parseInt(st.nextToken());
+        Set<Integer> set = new HashSet<>();
         for (int i = 0; i < n; i++) {
-            st = new StringTokenizer((br.readLine()));
-            coins.add(Integer.parseInt(st.nextToken()));
+            set.add(Integer.parseInt(br.readLine()));
         }
-        arr = new int[k + 1];
-        Arrays.fill(arr, Integer.MAX_VALUE - 1);
-        Collections.sort(coins);
-        arr[0] = 0;
-        for (int i = 0; i < n; i++) {
-            for (int j = coins.get(i); j <= k; j++) {
-                arr[j] = Math.min(arr[j], arr[j - coins.get(i)] + 1);
+
+        int[] dp = new int[k + 1];
+        Arrays.fill(dp, k + 1);
+        dp[0] = 0;
+
+        for (int coin : set) {
+            for (int i = coin; i <= k; i++) {
+                if (i - coin >= 0) {
+                    dp[i] = Math.min(dp[i], dp[i - coin] + 1);
+                }
             }
         }
-        int answer = arr[k] == Integer.MAX_VALUE - 1 ? -1 : arr[k];
-        System.out.println(answer);
+        System.out.println(dp[k] == k + 1 ? -1 : dp[k]);
     }
 }
